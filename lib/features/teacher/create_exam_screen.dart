@@ -21,11 +21,11 @@ class _CreateExamScreenState extends State<CreateExamScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppTheme.backgroundWhite,
+      backgroundColor: const Color(0xFF1E1E2C),
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
-        title: const Text('Create Exam', style: TextStyle(color: AppTheme.textDark)),
+        title: const Text('Create Exam', style: TextStyle(color: Colors.white)),
         actions: [
           TextButton(
             onPressed: _saveExam,
@@ -44,15 +44,8 @@ class _CreateExamScreenState extends State<CreateExamScreen> {
               Container(
                 padding: const EdgeInsets.all(20),
                 decoration: BoxDecoration(
-                  color: Colors.white,
+                  color: const Color(0xFF2D2D44),
                   borderRadius: BorderRadius.circular(16),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black.withOpacity(0.05),
-                      blurRadius: 10,
-                      offset: const Offset(0, 2),
-                    ),
-                  ],
                 ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -62,7 +55,7 @@ class _CreateExamScreenState extends State<CreateExamScreen> {
                       style: TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.w600,
-                        color: AppTheme.textDark,
+                        color: Colors.white,
                       ),
                     ),
                     const SizedBox(height: 16),
@@ -121,15 +114,8 @@ class _CreateExamScreenState extends State<CreateExamScreen> {
               Container(
                 padding: const EdgeInsets.all(20),
                 decoration: BoxDecoration(
-                  color: Colors.white,
+                  color: const Color(0xFF2D2D44),
                   borderRadius: BorderRadius.circular(16),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black.withOpacity(0.05),
-                      blurRadius: 10,
-                      offset: const Offset(0, 2),
-                    ),
-                  ],
                 ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -139,7 +125,7 @@ class _CreateExamScreenState extends State<CreateExamScreen> {
                       style: TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.w600,
-                        color: AppTheme.textDark,
+                        color: Colors.white,
                       ),
                     ),
                     const SizedBox(height: 16),
@@ -181,7 +167,7 @@ class _CreateExamScreenState extends State<CreateExamScreen> {
                     style: TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.w600,
-                      color: AppTheme.textDark,
+                      color: Colors.white,
                     ),
                   ),
                   ElevatedButton.icon(
@@ -199,9 +185,9 @@ class _CreateExamScreenState extends State<CreateExamScreen> {
                 Container(
                   padding: const EdgeInsets.all(40),
                   decoration: BoxDecoration(
-                    color: Colors.white,
+                    color: const Color(0xFF2D2D44),
                     borderRadius: BorderRadius.circular(16),
-                    border: Border.all(color: AppTheme.lightPurple, width: 2),
+                    border: Border.all(color: const Color(0xFF7C7CFF), width: 2),
                   ),
                   child: Center(
                     child: Column(
@@ -241,15 +227,8 @@ class _CreateExamScreenState extends State<CreateExamScreen> {
       margin: const EdgeInsets.only(bottom: 12),
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: const Color(0xFF2D2D44),
         borderRadius: BorderRadius.circular(12),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.05),
-            blurRadius: 10,
-            offset: const Offset(0, 2),
-          ),
-        ],
       ),
       child: Row(
         children: [
@@ -277,7 +256,7 @@ class _CreateExamScreenState extends State<CreateExamScreen> {
                   style: const TextStyle(
                     fontWeight: FontWeight.w600,
                     fontSize: 15,
-                    color: AppTheme.textDark,
+                    color: Colors.white,
                   ),
                 ),
                 const SizedBox(height: 4),

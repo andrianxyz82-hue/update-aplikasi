@@ -7,7 +7,7 @@ class TeacherDashboardScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppTheme.backgroundWhite,
+      backgroundColor: const Color(0xFF1E1E2C),
       body: SafeArea(
         child: SingleChildScrollView(
           padding: const EdgeInsets.all(20),
@@ -25,23 +25,23 @@ class TeacherDashboardScreen extends StatelessWidget {
                         'Teacher Dashboard',
                         style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                               fontWeight: FontWeight.bold,
-                              color: AppTheme.textDark,
+                              color: Colors.white,
                             ),
                       ),
                       const SizedBox(height: 4),
                       Text(
                         'Manage your classes',
                         style: TextStyle(
-                          color: AppTheme.textGrey,
+                          color: Colors.grey,
                         ),
                       ),
                     ],
                   ),
                   IconButton(
                     onPressed: () {},
-                    icon: const Icon(Icons.notifications_outlined),
+                    icon: const Icon(Icons.notifications_outlined, color: Colors.white),
                     style: IconButton.styleFrom(
-                      backgroundColor: Colors.white,
+                      backgroundColor: const Color(0xFF2D2D44),
                       padding: const EdgeInsets.all(12),
                     ),
                   ),
@@ -100,7 +100,7 @@ class TeacherDashboardScreen extends StatelessWidget {
                 'Recent Activity',
                 style: Theme.of(context).textTheme.titleLarge?.copyWith(
                       fontWeight: FontWeight.w600,
-                      color: AppTheme.textDark,
+                      color: Colors.white,
                     ),
               ),
               const SizedBox(height: 16),
@@ -133,15 +133,8 @@ class TeacherDashboardScreen extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: const Color(0xFF2D2D44),
         borderRadius: BorderRadius.circular(16),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.05),
-            blurRadius: 10,
-            offset: const Offset(0, 2),
-          ),
-        ],
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -149,7 +142,7 @@ class TeacherDashboardScreen extends StatelessWidget {
           Container(
             padding: const EdgeInsets.all(10),
             decoration: BoxDecoration(
-              color: color.withOpacity(0.1),
+              color: color.withOpacity(0.2),
               borderRadius: BorderRadius.circular(10),
             ),
             child: Icon(icon, color: color, size: 24),
@@ -157,18 +150,18 @@ class TeacherDashboardScreen extends StatelessWidget {
           const SizedBox(height: 12),
           Text(
             value,
-            style: TextStyle(
+            style: const TextStyle(
               fontSize: 24,
               fontWeight: FontWeight.bold,
-              color: AppTheme.textDark,
+              color: Colors.white,
             ),
           ),
           const SizedBox(height: 4),
           Text(
             title,
-            style: TextStyle(
+            style: const TextStyle(
               fontSize: 13,
-              color: AppTheme.textGrey,
+              color: Colors.grey,
             ),
           ),
         ],
@@ -181,22 +174,15 @@ class TeacherDashboardScreen extends StatelessWidget {
       margin: const EdgeInsets.only(bottom: 12),
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: const Color(0xFF2D2D44),
         borderRadius: BorderRadius.circular(12),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.05),
-            blurRadius: 10,
-            offset: const Offset(0, 2),
-          ),
-        ],
       ),
       child: Row(
         children: [
           Container(
             padding: const EdgeInsets.all(10),
             decoration: BoxDecoration(
-              color: color.withOpacity(0.1),
+              color: color.withOpacity(0.2),
               borderRadius: BorderRadius.circular(10),
             ),
             child: Icon(icon, color: color, size: 20),
@@ -211,15 +197,15 @@ class TeacherDashboardScreen extends StatelessWidget {
                   style: const TextStyle(
                     fontWeight: FontWeight.w600,
                     fontSize: 15,
-                    color: AppTheme.textDark,
+                    color: Colors.white,
                   ),
                 ),
                 const SizedBox(height: 4),
                 Text(
                   subtitle,
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 13,
-                    color: AppTheme.textGrey,
+                    color: Colors.grey,
                   ),
                 ),
               ],

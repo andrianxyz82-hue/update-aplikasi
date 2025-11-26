@@ -23,20 +23,12 @@ class SafeExamApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => ThemeCubit(),
-      child: BlocBuilder<ThemeCubit, ThemeMode>(
-        builder: (context, themeMode) {
-          return MaterialApp.router(
-            title: 'Safe Exam App',
-            debugShowCheckedModeBanner: false,
-            theme: AppTheme.lightTheme,
-            darkTheme: AppTheme.darkTheme,
-            themeMode: themeMode,
-            routerConfig: AppRouter.router,
-          );
-        },
-      ),
+    return MaterialApp.router(
+      title: 'Safe Exam App',
+      debugShowCheckedModeBanner: false,
+      theme: AppTheme.darkTheme,
+      themeMode: ThemeMode.dark,
+      routerConfig: AppRouter.router,
     );
   }
 }

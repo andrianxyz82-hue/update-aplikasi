@@ -23,8 +23,8 @@ class _LoginScreenState extends State<LoginScreen> {
           gradient: LinearGradient(
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
-            colors: [AppTheme.lightPurple, AppTheme.backgroundWhite],
-            stops: [0.0, 0.3],
+            colors: [Color(0xFF2D2D44), Color(0xFF1E1E2C)],
+            stops: [0.0, 0.5],
           ),
         ),
         child: SafeArea(
@@ -38,20 +38,13 @@ class _LoginScreenState extends State<LoginScreen> {
                   child: Container(
                     padding: const EdgeInsets.all(16),
                     decoration: BoxDecoration(
-                      color: Colors.white,
+                      color: const Color(0xFF7C7CFF).withOpacity(0.2),
                       shape: BoxShape.circle,
-                      boxShadow: [
-                        BoxShadow(
-                          color: AppTheme.primaryPurple.withOpacity(0.2),
-                          blurRadius: 20,
-                          offset: const Offset(0, 10),
-                        ),
-                      ],
                     ),
                     child: const Icon(
                       Icons.school_rounded,
                       size: 64,
-                      color: AppTheme.primaryPurple,
+                      color: Color(0xFF7C7CFF),
                     ),
                   ),
                 ),
@@ -60,14 +53,14 @@ class _LoginScreenState extends State<LoginScreen> {
                   'Welcome Back!',
                   style: Theme.of(context).textTheme.headlineMedium?.copyWith(
                         fontWeight: FontWeight.bold,
-                        color: AppTheme.textDark,
+                        color: Colors.white,
                       ),
                 ),
                 const SizedBox(height: 8),
                 Text(
                   'Login to continue your journey',
                   style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                        color: AppTheme.textGrey,
+                        color: Colors.grey,
                       ),
                 ),
                 const SizedBox(height: 32),
@@ -75,7 +68,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 Container(
                   padding: const EdgeInsets.all(4),
                   decoration: BoxDecoration(
-                    color: Colors.grey[200],
+                    color: const Color(0xFF1E1E2C),
                     borderRadius: BorderRadius.circular(12),
                   ),
                   child: Row(
@@ -86,24 +79,15 @@ class _LoginScreenState extends State<LoginScreen> {
                           child: Container(
                             padding: const EdgeInsets.symmetric(vertical: 12),
                             decoration: BoxDecoration(
-                              color: _isStudent ? Colors.white : Colors.transparent,
+                              color: _isStudent ? const Color(0xFF2D2D44) : Colors.transparent,
                               borderRadius: BorderRadius.circular(10),
-                              boxShadow: _isStudent
-                                  ? [
-                                      BoxShadow(
-                                        color: Colors.black.withOpacity(0.05),
-                                        blurRadius: 4,
-                                        offset: const Offset(0, 2),
-                                      ),
-                                    ]
-                                  : null,
                             ),
                             child: Center(
                               child: Text(
                                 'Student',
                                 style: TextStyle(
                                   fontWeight: FontWeight.w600,
-                                  color: _isStudent ? AppTheme.textDark : AppTheme.textGrey,
+                                  color: _isStudent ? Colors.white : Colors.grey,
                                 ),
                               ),
                             ),
@@ -116,24 +100,15 @@ class _LoginScreenState extends State<LoginScreen> {
                           child: Container(
                             padding: const EdgeInsets.symmetric(vertical: 12),
                             decoration: BoxDecoration(
-                              color: !_isStudent ? Colors.white : Colors.transparent,
+                              color: !_isStudent ? const Color(0xFF2D2D44) : Colors.transparent,
                               borderRadius: BorderRadius.circular(10),
-                              boxShadow: !_isStudent
-                                  ? [
-                                      BoxShadow(
-                                        color: Colors.black.withOpacity(0.05),
-                                        blurRadius: 4,
-                                        offset: const Offset(0, 2),
-                                      ),
-                                    ]
-                                  : null,
                             ),
                             child: Center(
                               child: Text(
                                 'Teacher',
                                 style: TextStyle(
                                   fontWeight: FontWeight.w600,
-                                  color: !_isStudent ? AppTheme.textDark : AppTheme.textGrey,
+                                  color: !_isStudent ? Colors.white : Colors.grey,
                                 ),
                               ),
                             ),

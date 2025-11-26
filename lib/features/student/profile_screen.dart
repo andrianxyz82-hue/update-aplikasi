@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../core/app_theme.dart';
-import '../../core/theme_cubit.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
@@ -44,7 +42,7 @@ class ProfileScreen extends StatelessWidget {
                     style: TextStyle(
                       fontSize: 22,
                       fontWeight: FontWeight.w600,
-                      color: AppTheme.textDark,
+                      color: Colors.white,
                     ),
                   ),
                   const SizedBox(height: 4),
@@ -73,25 +71,16 @@ class ProfileScreen extends StatelessWidget {
               'Change Password',
               () {},
             ),
-            BlocBuilder<ThemeCubit, ThemeMode>(
-              builder: (context, themeMode) {
-                final isDark = themeMode == ThemeMode.dark;
-                return _buildMenuItem(
-                  context,
-                  Icons.dark_mode_outlined,
-                  'Dark Mode',
-                  () {
-                    context.read<ThemeCubit>().toggleTheme(!isDark);
-                  },
-                  trailing: Switch(
-                    value: isDark,
-                    onChanged: (value) {
-                      context.read<ThemeCubit>().toggleTheme(value);
-                    },
-                    activeColor: AppTheme.primaryPurple,
-                  ),
-                );
-              },
+            _buildMenuItem(
+              context,
+              Icons.dark_mode_outlined,
+              'Dark Mode',
+              () {},
+              trailing: const Switch(
+                value: true,
+                onChanged: null, // Disabled since dark mode is always on
+                activeColor: Color(0xFF7C7CFF),
+              ),
             ),
             _buildMenuItem(
               context,

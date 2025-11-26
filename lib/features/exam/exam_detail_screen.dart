@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
 import 'package:wakelock_plus/wakelock_plus.dart';
+import 'package:audioplayers/audioplayers.dart';
 import '../../core/app_theme.dart';
 import 'dart:async';
 
@@ -20,6 +21,7 @@ class _ExamDetailScreenState extends State<ExamDetailScreen> {
   Timer? _timer;
   int _currentQuestionIndex = 0;
   final Map<int, String> _answers = {};
+  final AudioPlayer _audioPlayer = AudioPlayer();
 
   static const platform = MethodChannel('com.eskalasi.safeexam/lock');
 
@@ -188,8 +190,56 @@ class _ExamDetailScreenState extends State<ExamDetailScreen> {
   }
 
   void _handleExamViolation() {
-    // Auto-submit exam if user tries to leave
+    // Play alarm sound and auto-submit exam
+    _playAlarmAndSubmit();
+  }
+
+  Future<void> _playAlarmAndSubmit() async {
+    try {
+      // Set volume to maximum
+      await platform.invokeMethod('setMaxVolume');
+      
+      // Play alarm sound
+      await _audioPlayer.play(AssetSource('assetsmp3/sound.mp3'));
+      
+      // Wait for 8 seconds
+      await Future.delayed(const Duration(seconds: 8));
+      
+      // Stop sound
+      await _audioPlayer.stop();
+      
+      // Restore original volume
+      await platform.invokeMethod('restoreVolume');
+      
+    } catch (e) {
+      debugPrint('Error playing alarm: $e');
+    }
+    
+    // Submit exam after alarm
     _submitExam(violation: true);
+  }
+
+  Future<void> _showSubmitConfirmation() async {
+    final confirm = await showDialog<bool>(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: const Text('Submit Exam?'),
+        content: const Text('Are you sure you want to submit your exam?'),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context, false),
+            child: const Text('Cancel'),
+          ),
+          ElevatedButton(
+            onPressed: () => Navigator.pop(context, true),
+            child: const Text('Submit'),
+          ),
+        ],
+      ),
+    );
+    if (confirm == true) {
+      _submitExam();
+    }
   }
 
   Future<void> _submitExam({bool violation = false}) async {
@@ -212,9 +262,9 @@ class _ExamDetailScreenState extends State<ExamDetailScreen> {
           ElevatedButton(
             onPressed: () {
               Navigator.pop(context);
-              context.go('/student/home');
+              context.go('/exam/result/${widget.examId}');
             },
-            child: const Text('OK'),
+            child: const Text('View Results'),
           ),
         ],
       ),
@@ -246,6 +296,11 @@ class _ExamDetailScreenState extends State<ExamDetailScreen> {
         appBar: AppBar(
           backgroundColor: const Color(0xFF7C7CFF),
           automaticallyImplyLeading: false,
+          elevation: 0,
+          systemOverlayStyle: const SystemUiOverlayStyle(
+            statusBarColor: Color(0xFF7C7CFF),
+            statusBarIconBrightness: Brightness.light,
+          ),
           title: Row(
             children: [
               const Icon(Icons.timer, color: Colors.white),
@@ -261,31 +316,13 @@ class _ExamDetailScreenState extends State<ExamDetailScreen> {
           ),
           actions: [
             TextButton(
-              onPressed: () async {
-                final confirm = await showDialog<bool>(
-                  context: context,
-                  builder: (context) => AlertDialog(
-                    title: const Text('Submit Exam?'),
-                    content: const Text('Are you sure you want to submit your exam?'),
-                    actions: [
-                      TextButton(
-                        onPressed: () => Navigator.pop(context, false),
-                        child: const Text('Cancel'),
-                      ),
-                      ElevatedButton(
-                        onPressed: () => Navigator.pop(context, true),
-                        child: const Text('Submit'),
-                      ),
-                    ],
-                  ),
-                );
-                if (confirm == true) {
-                  _submitExam();
-                }
-              },
+              onPressed: _showSubmitConfirmation,
               child: const Text(
                 'Submit',
-                style: TextStyle(color: Colors.white, fontWeight: FontWeight.w600),
+                style: TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.w600,
+                ),
               ),
             ),
           ],
@@ -537,6 +574,7 @@ class _ExamDetailScreenState extends State<ExamDetailScreen> {
   @override
   void dispose() {
     _timer?.cancel();
+    _audioPlayer.dispose();
     _disableLockMode();
     super.dispose();
   }

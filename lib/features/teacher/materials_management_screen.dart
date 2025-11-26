@@ -7,15 +7,15 @@ class MaterialsManagementScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppTheme.backgroundWhite,
+      backgroundColor: const Color(0xFF1E1E2C),
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
-        title: const Text('Materials', style: TextStyle(color: AppTheme.textDark)),
+        title: const Text('Materials', style: TextStyle(color: Colors.white)),
         actions: [
           IconButton(
             onPressed: () => _showUploadDialog(context),
-            icon: const Icon(Icons.add, color: AppTheme.textDark),
+            icon: const Icon(Icons.add, color: Colors.white),
           ),
         ],
       ),
@@ -91,15 +91,8 @@ class MaterialsManagementScreen extends StatelessWidget {
       margin: const EdgeInsets.only(bottom: 16),
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: const Color(0xFF2D2D44),
         borderRadius: BorderRadius.circular(16),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.05),
-            blurRadius: 10,
-            offset: const Offset(0, 2),
-          ),
-        ],
       ),
       child: Row(
         children: [
@@ -125,7 +118,7 @@ class MaterialsManagementScreen extends StatelessWidget {
                   style: const TextStyle(
                     fontWeight: FontWeight.w600,
                     fontSize: 16,
-                    color: AppTheme.textDark,
+                    color: Colors.white,
                   ),
                 ),
                 const SizedBox(height: 4),
@@ -133,17 +126,17 @@ class MaterialsManagementScreen extends StatelessWidget {
                   children: [
                     Text(
                       material['type'] as String,
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontSize: 13,
-                        color: AppTheme.textGrey,
+                        color: Colors.grey,
                       ),
                     ),
                     const SizedBox(width: 8),
                     Text(
                       '• ${material['size']}',
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontSize: 13,
-                        color: AppTheme.textGrey,
+                        color: Colors.grey,
                       ),
                     ),
                   ],

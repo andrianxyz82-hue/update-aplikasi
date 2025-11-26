@@ -79,6 +79,34 @@ class StudentHomeScreen extends StatelessWidget {
                 ),
                 const SizedBox(height: 24),
 
+                // Banner Image
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(20),
+                  child: Image.asset(
+                    'assetsimages/well.png',
+                    height: 150,
+                    width: double.infinity,
+                    fit: BoxFit.cover,
+                    errorBuilder: (context, error, stackTrace) {
+                      return Container(
+                        height: 150,
+                        decoration: BoxDecoration(
+                          color: const Color(0xFF2D2D44),
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        child: const Center(
+                          child: Icon(
+                            Icons.image_outlined,
+                            color: Colors.white30,
+                            size: 60,
+                          ),
+                        ),
+                      );
+                    },
+                  ),
+                ),
+                const SizedBox(height: 24),
+
                 // Category Grid
                 GridView.count(
                   crossAxisCount: 2,
