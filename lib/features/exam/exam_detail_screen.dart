@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter/foundation.dart';
 import 'package:go_router/go_router.dart';
 import 'package:wakelock_plus/wakelock_plus.dart';
 import 'package:audioplayers/audioplayers.dart';
@@ -191,32 +192,50 @@ class _ExamDetailScreenState extends State<ExamDetailScreen> {
 
   void _handleExamViolation() {
     // Play alarm sound and auto-submit exam
+    debugPrint('🚨 VIOLATION DETECTED - Playing alarm');
     _playAlarmAndSubmit();
   }
 
   Future<void> _playAlarmAndSubmit() async {
+    debugPrint('🔊 Starting alarm playback...');
+    
     try {
-      // Set volume to maximum
-      await platform.invokeMethod('setMaxVolume');
+      // Set volume to maximum (only on mobile platforms)
+      if (!kIsWeb) {
+        debugPrint('📢 Setting volume to MAX');
+        await platform.invokeMethod('setMaxVolume');
+      } else {
+        debugPrint('🌐 Running on Web - skipping volume control');
+      }
       
       // Play alarm sound
+      debugPrint('🎵 Playing sound from: assetsmp3/sound.mp3');
       await _audioPlayer.play(AssetSource('assetsmp3/sound.mp3'));
       
+      debugPrint('⏳ Waiting 8 seconds...');
       // Wait for 8 seconds
       await Future.delayed(const Duration(seconds: 8));
       
       // Stop sound
+      debugPrint('🛑 Stopping sound');
       await _audioPlayer.stop();
       
-      // Restore original volume
-      await platform.invokeMethod('restoreVolume');
+      // Restore original volume (only on mobile platforms)
+      if (!kIsWeb) {
+        debugPrint('🔉 Restoring volume');
+        await platform.invokeMethod('restoreVolume');
+      }
       
+      debugPrint('✅ Alarm completed');
     } catch (e) {
-      debugPrint('Error playing alarm: $e');
+      debugPrint('❌ Error playing alarm: $e');
     }
     
     // Submit exam after alarm
-    _submitExam(violation: true);
+    debugPrint('📝 Submitting exam');
+    if (mounted) {
+      _submitExam(violation: true);
+    }
   }
 
   Future<void> _showSubmitConfirmation() async {
@@ -327,6 +346,7 @@ class _ExamDetailScreenState extends State<ExamDetailScreen> {
             ),
           ],
         ),
+
         body: Column(
           children: [
             // Progress Indicator

@@ -41,27 +41,32 @@ class _LoginScreenState extends State<LoginScreen> {
                       color: const Color(0xFF7C7CFF).withOpacity(0.2),
                       shape: BoxShape.circle,
                     ),
-                    child: const Icon(
-                      Icons.school_rounded,
-                      size: 64,
-                      color: Color(0xFF7C7CFF),
+                    child: Image.asset(
+                      'assetsimages/well.png',
+                      height: 80,
+                      width: 80,
+                      fit: BoxFit.contain,
                     ),
                   ),
                 ),
                 const SizedBox(height: 40),
-                Text(
-                  'Welcome Back!',
-                  style: Theme.of(context).textTheme.headlineMedium?.copyWith(
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
-                      ),
+                Center(
+                  child: Text(
+                    'Welcome Back!',
+                    style: Theme.of(context).textTheme.headlineMedium?.copyWith(
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                        ),
+                  ),
                 ),
                 const SizedBox(height: 8),
-                Text(
-                  'Login to continue your journey',
-                  style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                        color: Colors.grey,
-                      ),
+                Center(
+                  child: Text(
+                    'Login to continue your journey',
+                    style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                          color: Colors.grey,
+                        ),
+                  ),
                 ),
                 const SizedBox(height: 32),
                 // Role Switcher

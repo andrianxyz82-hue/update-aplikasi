@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:lottie/lottie.dart';
+
 import 'package:go_router/go_router.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -29,13 +29,12 @@ class _SplashScreenState extends State<SplashScreen> {
     return Scaffold(
       backgroundColor: const Color(0xFF1B1C30),
       body: Center(
-        child: Lottie.asset(
-          'assets/splash.json',
+        child: Image.asset(
+          'assetsimages/foto.png',
           width: 300,
           height: 300,
           fit: BoxFit.contain,
           errorBuilder: (context, error, stackTrace) {
-            // Fallback if animation fails to load
             return const Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [

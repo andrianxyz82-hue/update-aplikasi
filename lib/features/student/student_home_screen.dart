@@ -40,8 +40,8 @@ class StudentHomeScreen extends StatelessWidget {
                     ),
                     Container(
                       padding: const EdgeInsets.all(12),
-                      decoration: BoxDecoration(
-                        color: const Color(0xFF2D2D44),
+                      decoration: const BoxDecoration(
+                        color: Color(0xFF2D2D44),
                         shape: BoxShape.circle,
                       ),
                       child: const Icon(
@@ -84,12 +84,12 @@ class StudentHomeScreen extends StatelessWidget {
                   borderRadius: BorderRadius.circular(20),
                   child: Image.asset(
                     'assetsimages/well.png',
-                    height: 150,
+                    height: 180,
                     width: double.infinity,
-                    fit: BoxFit.cover,
+                    fit: BoxFit.contain,
                     errorBuilder: (context, error, stackTrace) {
                       return Container(
-                        height: 150,
+                        height: 180,
                         decoration: BoxDecoration(
                           color: const Color(0xFF2D2D44),
                           borderRadius: BorderRadius.circular(20),
@@ -163,7 +163,7 @@ class StudentHomeScreen extends StatelessWidget {
     Color accentColor,
   ) {
     return Container(
-      padding: const EdgeInsets.all(20),
+      padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
         color: const Color(0xFF2D2D44),
         borderRadius: BorderRadius.circular(24),
@@ -178,28 +178,30 @@ class StudentHomeScreen extends StatelessWidget {
               color: accentColor.withOpacity(0.2),
               borderRadius: BorderRadius.circular(16),
             ),
-            child: Icon(icon, color: accentColor, size: 28),
+            child: Icon(
+              icon,
+              color: accentColor,
+              size: 28,
+            ),
           ),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                title,
-                style: const TextStyle(
-                  fontWeight: FontWeight.w600,
-                  fontSize: 15,
-                  color: Colors.white,
-                ),
-              ),
-              const SizedBox(height: 4),
-              Text(
-                subtitle,
-                style: TextStyle(
-                  fontSize: 12,
-                  color: Colors.grey.withOpacity(0.8),
-                ),
-              ),
-            ],
+          const SizedBox(height: 12),
+          Text(
+            title,
+            style: const TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.w600,
+              color: Colors.white,
+            ),
+            maxLines: 2,
+            overflow: TextOverflow.ellipsis,
+          ),
+          const SizedBox(height: 4),
+          Text(
+            subtitle,
+            style: const TextStyle(
+              fontSize: 13,
+              color: Colors.grey,
+            ),
           ),
         ],
       ),
